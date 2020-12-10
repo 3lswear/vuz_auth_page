@@ -1,0 +1,16 @@
+body {
+    background-image: url(img/814.gif);
+    text-align: center;
+}
+form {
+    background-color: gray;
+    width: 30%; 
+    /*height: 20%;*/
+    margin: auto;
+    padding: 5%;
+    text-align: justify;
+}
+a {
+    background-color: green;
+    padding: 5px;
+}
