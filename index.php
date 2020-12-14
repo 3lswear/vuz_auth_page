@@ -73,6 +73,9 @@ if ($state != 1) {
 <head>
     <link rel="stylesheet" href="stylesheet.css">
 </head>
+<div>
+    <h1>ВХОД</h1>
+</div>
 <form method="post" action="/auth_page/index.php">
     Логин: <input type="text" size="30" name="login"/><br />
     Пароль: <input type="password" name="pass" size="30"/><br />
@@ -82,13 +85,16 @@ if ($state != 1) {
 <?php
 } else {
     echo '
-<body style="background-image: url(img/fb1.gif); text-align: center">
-<div style="background-color: white; width: 20%; margin: auto; text-align: center">
+<head>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body style="background-image: url(img/dogdance.gif); text-align: center">
+<div id=succ style="background-color: white; width: 20%; margin: auto; text-align: center">
     Вы вошли на сайт!<br />
     Ваш Логин: ' . $userinfo["login"] . '<br />
     Ваш E-mail: ' . $userinfo["email"] . '<br />
-    <a href="/auth_page/index.php?exit=y"> Выход</a>
 </div>
+<a href="/auth_page/index.php?exit=y"> Выход</a>
 </body>';
 }
 ?>
