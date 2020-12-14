@@ -3,14 +3,36 @@ body {
     text-align: center;
 }
 form {
-    background-color: gray;
-    width: 30%; 
+    /* background-color: gray; */
+    /* background-image: linear-gradient(to right, yellow, red, yellow); */
+    background-image: url("img/explo.gif");
+    width: 30%;
     /*height: 20%;*/
     margin: auto;
     padding: 5%;
     text-align: justify;
+    color: white;
 }
 a {
+    color: white;
     background-color: green;
     padding: 5px;
+}
+div {
+    color: white;
+    width: 30%;
+    /* height: 3%; */
+    margin: auto;
+    padding: 5%;
+    text-align: center;
+    /* background-image: linear-gradient(to right, red, yellow, red); */
+    background-image: url("img/explo.gif");
+}
+#succ {
+    color: black;
+    display: block;
+    /* background-image: linear-gradient(to right, green, yellow, green); */
+    background-color: black;
+    background-image: url("img/pug.gif");
+    width: 50px;
 }
