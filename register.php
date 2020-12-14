@@ -30,9 +30,13 @@ if (isset($_POST['login']) || isset($_POST['pass1']) || isset($_POST['pass2']) |
 <head>
     <link rel='stylesheet' href='stylesheet.css'>
 </head>
+<div>
+    <h1>РЕГИСТРАЦИЯ</h1>
+</div>
 <form method='post' action='/auth_page/register.php'> Введите Логин: <input type='text' size='30' name='login' /><br />
 	Введите e-mail: <input type=text size=30 name='email' /><br /> Пароль: <input type='password' name='pass1' size='30' /><br />
-	Повторите пароль: <input type='password' name='pass2' size='30' /><br /> <input type='submit' value='Регистрация' /> </form>
+	Повторите пароль: <input type='password' name='pass2' size='30' /><br /> <input type='submit' value='Регистрация' />
+</form>
     <br /><a href='/auth_page/index.php'>Вход</a>";
 }
 ?>
