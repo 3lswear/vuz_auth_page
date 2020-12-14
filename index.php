@@ -59,6 +59,12 @@ if ($state != 1) { // если после проверки куков, оказ�
                 setcookie("pass", md5($pass), $time + 1800);
                 $state = 1; // статус, если 1, тогда пользователь авторизован
             }
+            else {
+                echo '
+                <script type="text/JavaScript">
+                    alert("Неверный пароль!!!!");
+                </script>';
+            }
         }
         else {
             echo '
@@ -90,7 +96,7 @@ if ($state != 1) {
 </head>
 <body style="background-image: url(img/dogdance.gif); text-align: center">
 <div id=succ style="background-color: white; width: 20%; margin: auto; text-align: center">
-    Вы вошли на сайт!<br />
+    Вы УСПЕШНО вошли на сайт!<br />
     Ваш Логин: ' . $userinfo["login"] . '<br />
     Ваш E-mail: ' . $userinfo["email"] . '<br />
 </div>
