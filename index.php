@@ -39,15 +39,19 @@ if ($state != 1) { // если после проверки куков, оказ�
     if ((isset($_POST['login'])) & (isset($_POST['pass']))) { // если пользователь ввёл логин и пароль
         $login = $_POST['login'];
         // проверяем наличие пользователя в БД и достаём оттуда пароль
-        $sql = "SELECT id, pass FROM users WHERE login='$login'";
-        $res = mysqli_query($link, $sql);
+        $sql = "SELECT id, pass FROM users WHERE login='%s'";
+        $query = sprintf($sql,
+                         mysqli_real_escape_string($link, $login));
+        $res = mysqli_query($link, $query);
         if (mysqli_num_rows($res) > 0) { // если пользователь есть в БД
             $userinfo = mysqli_fetch_array($res); // в этой переменной лежит пароль из БД и номер пользователя
             $pass = $_POST['pass'];
             if (strcmp($pass, $userinfo['pass']) == 0) {
                 // достаём все данные из БД
-                $sql = "SELECT * FROM users WHERE login='$login'";
-                $res = mysqli_query($link, $sql);
+                $sql = "SELECT * FROM users WHERE login='%s'";
+                $query = sprintf($sql,
+                                 mysqli_real_escape_string($link, $login));
+                $res = mysqli_query($link, $query);
                 $userinfo = mysqli_fetch_array($res); // в этой переменной будет лежать вся информация о пользователе из БД
                 $time = time();
                 // устанавливаем куки для запоминания статуса пользователя, пароль шифруем
@@ -55,6 +59,12 @@ if ($state != 1) { // если после проверки куков, оказ�
                 setcookie("pass", md5($pass), $time + 1800);
                 $state = 1; // статус, если 1, тогда пользователь авторизован
             }
+        }
+        else {
+            echo '
+                <script type="text/JavaScript">
+                    alert("Пользователя с таким логином не существует!!!");
+                </script>';
         }
     }
 }
