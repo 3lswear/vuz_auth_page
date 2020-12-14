@@ -1,25 +1,26 @@
 <?php
-/*!!!Чтобы не повредить работоспособности
-скрипта выше этого комментария
-не размещайте вообще ничего!!!*/
 include ('connectdb.php'); // подключение к серверу MySql и выбор БД
 $userinfo = '';
 $state = '0';
-if ((isset($_COOKIE['login'])) & (isset($_COOKIE['pass']))) { // если в куках лежит логин и зашифрованый пароля
+if ((isset($_COOKIE['login'])) & (isset($_COOKIE['pass']))) { // если в куках лежит логин и зашифрованый пароль
     if (!isset($_GET['exit'])) { // если кнопка выход не была нажата
         if($_COOKIE['login'])
             $login = $_COOKIE['login'];
         if($_COOKIE['pass'])
             $pass = $_COOKIE['pass'];
         // проверяем наличие пользователя в БД и достаём оттуда пароль
-        $sql = "SELECT id, pass FROM users WHERE login='$login'";
-        $res = mysqli_query($link, $sql);
+        $sql = "SELECT id, pass FROM users WHERE login='%s'";
+        $query = sprintf($sql,
+                         mysqli_real_escape_string($link, $login));
+        $res = mysqli_query($link, $query);
         if (mysqli_num_rows($res) > 0) { // если пользователь есть в БД
             $userinfo = mysqli_fetch_array($res); // в этой переменной лежит пароль из БД
             if (strcmp($pass, md5($userinfo['pass'])) == 0) { //проверяем схожесть пароля из БД с паролем из куков
                 // достаём все данные из БД
-                $sql = "SELECT * FROM users WHERE login='$login'";
-                $res = mysqli_query($link, $sql);
+                $sql = "SELECT * FROM users WHERE login='%s'";
+                $query = sprintf($sql,
+                                mysqli_real_escape_string($link, $login));
+                $res = mysqli_query($link, $query);
                 $userinfo = mysqli_fetch_array($res); // в этой переменной будет лежать вся информация о пользователе из БД
                 $time = time();
                 // устанавливаем куки для запоминания статуса пользователя
